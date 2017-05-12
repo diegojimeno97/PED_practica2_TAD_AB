@@ -5,10 +5,39 @@
  */
 package Prueba;
 
+import AB.ABEnteros;
+
 /**
  *
  * @author Diego
  */
 public class PruebaABEnteros {
+    
+    private ABEnteros<Integer> aB1;
+    private ABEnteros<Integer> aB2;
+    
+    public void CrearAB1(){
+        //TODO
+    }
+    
+    public void CrearAB2(){
+        //TODO
+    }
+    
+    public void comprobarABB(){
+        //TODO
+    }
+    
+    public void siRaizIgualNodosInternos(){
+        //TODO
+    }
+    
+    public void eliminarNodosInferiores(int nivel){
+        //TODO
+    }
+    
+    public void mostrarMinimoValorNivel(){
+        //TODO
+    }
     
 }
