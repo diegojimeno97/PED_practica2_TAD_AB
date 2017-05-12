@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package AB;
 
 import excepciones.ArbolVacioExcepcion;
 
-/**
- *
- * @author Home
- */
 public class EnlazadoArbolBinario<E> implements ArbolBinario {
 
     private NodoBinario<E> nodoRaiz;
@@ -47,10 +39,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario {
     }
 
 
-    @Override
-    public E raiz() throws ArbolVacioExcepcion {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     @Override
     public ArbolBinario hijoIzq() throws ArbolVacioExcepcion {
@@ -64,10 +53,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario {
         return new EnlazadoArbolBinario<E>(nodoRaiz.getDer());
     }
     
-    @Override
-    public boolean esta(E elemento){
-        return esta(nodoRaiz, elemento);
-    }
+    
     
     private boolean esta(NodoBinario<E> raiz, E elemento){
         if(raiz==null) return false;
@@ -75,12 +61,14 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario {
         boolean temp = esta(raiz.getIzq(),elemento);
         return temp;
     }
-
+    
     @Override
-    public void setRaiz(E elemRaiz) throws ArbolVacioExcepcion {
-        if(esVacio()) throw new ArbolVacioExcepcion("raiz: Árbol vacio");
-        nodoRaiz.setElemento(elemRaiz);
+    public boolean esta(Object elemento) {
+        return esta(nodoRaiz, (E)elemento);
     }
+
+   
+    
 
     @Override
     public void setHijoIzq(ArbolBinario hi) throws ArbolVacioExcepcion {
@@ -91,17 +79,27 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario {
 
     @Override
     public void setHijoDer(ArbolBinario hd) throws ArbolVacioExcepcion {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(hd==null) throw new NullPointerException();
+        if(esVacio()) throw new ArbolVacioExcepcion("setHijoDer: Árbol vacio");
+        nodoRaiz.setIzq(((EnlazadoArbolBinario<E>)hd).nodoRaiz);
     }
 
     @Override
     public void suprimir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        nodoRaiz = null;
     }
 
     @Override
     public void EliminarNodosInferiores() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+    @Override
+    public void setRaiz(Object elemRaiz) throws ArbolVacioExcepcion {
+        if(esVacio()) throw new ArbolVacioExcepcion("raiz: Árbol vacio");
+        nodoRaiz.setElemento((E) elemRaiz);
     }
   
     

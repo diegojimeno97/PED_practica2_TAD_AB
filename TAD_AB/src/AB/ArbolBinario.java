@@ -4,16 +4,16 @@ import excepciones.ArbolVacioExcepcion;
 
 public interface ArbolBinario<E> {
     
-    public boolean esVacio();
-    public E raiz() throws ArbolVacioExcepcion;
-    public ArbolBinario<E>hijoIzq() throws ArbolVacioExcepcion;
-    public ArbolBinario<E>hijoDer() throws ArbolVacioExcepcion;
-    public boolean esta(E elemento);
-    public void setRaiz(E elemRaiz) throws ArbolVacioExcepcion;
-    public void setHijoIzq(ArbolBinario<E> hi)
+    public abstract boolean esVacio();
+    public abstract E raiz() throws ArbolVacioExcepcion;
+    public abstract ArbolBinario<E>hijoIzq() throws ArbolVacioExcepcion;
+    public abstract ArbolBinario<E>hijoDer() throws ArbolVacioExcepcion;
+    public abstract boolean esta(E elemento);
+    public abstract void setRaiz(E elemRaiz) throws ArbolVacioExcepcion;
+    public abstract void setHijoIzq(ArbolBinario<E> hi)
             throws ArbolVacioExcepcion;
-    public void setHijoDer(ArbolBinario<E> hd)
+    public abstract void setHijoDer(ArbolBinario<E> hd)
             throws ArbolVacioExcepcion;
-    public void suprimir();
-    public void EliminarNodosInferiores();
+    public abstract void suprimir();
+    public abstract void EliminarNodosInferiores();
 }
