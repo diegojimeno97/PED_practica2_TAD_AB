@@ -30,15 +30,14 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario {
     }
     
     
-    private EnlazadoArbolBinario<E>(NodoBinario<E> raiz){
+    private EnlazadoArbolBinario (NodoBinario<E> raiz){ //EnlazadoArbolBinario<E> 
         this.nodoRaiz = raiz;
     }
     
-    
+    @Override
     public E raiz() throws ArbolVacioExcepcion{
-        if(esVacio()) 
-            throws new ArbolVacioExcepcion("raiz: Árbol vacio");
-            //incompleto
+        if(esVacio()) throw new ArbolVacioExcepcion("raiz:Árbol vacío");
+        return nodoRaiz.getElemento();
     }
     
     
@@ -47,34 +46,42 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario {
         return nodoRaiz==null;
     }
 
-    @Override
-    public Object raiz() throws ArbolVacioExcepcion {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public ArbolBinario hijoIzq() throws ArbolVacioExcepcion {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(esVacio()) throw new ArbolVacioExcepcion("hijoIzq: Árbol vacio");
+        return new EnlazadoArbolBinario<E>(nodoRaiz.getIzq());
     }
 
     @Override
     public ArbolBinario hijoDer() throws ArbolVacioExcepcion {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(esVacio()) throw new ArbolVacioExcepcion("hijoDer: Árbol vacio");
+        return new EnlazadoArbolBinario<E>(nodoRaiz.getDer());
+    }
+    
+    @Override
+    public boolean esta(E elemento){
+        return esta(nodoRaiz, elemento);
+    }
+    
+    private boolean esta(NodoBinario<E> raiz, E elemento){
+        if(raiz==null) return false;
+        if(raiz.getElemento().equals(elemento)) return true;
+        boolean temp = esta(raiz.getIzq(),elemento);
+        return temp;
     }
 
     @Override
-    public boolean esta(Object elmento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setRaiz(Object elemRaiz) throws ArbolVacioExcepcion {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setRaiz(E elemRaiz) throws ArbolVacioExcepcion {
+        if(esVacio()) throw new ArbolVacioExcepcion("raiz: Árbol vacio");
+        nodoRaiz.setElemento(elemRaiz);
     }
 
     @Override
     public void setHijoIzq(ArbolBinario hi) throws ArbolVacioExcepcion {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(hi==null) throw new NullPointerException();
+        if(esVacio()) throw new ArbolVacioExcepcion("setHijoIzq: Árbol vacio");
+        nodoRaiz.setIzq(((EnlazadoArbolBinario<E>)hi).nodoRaiz);
     }
 
     @Override
