@@ -88,9 +88,24 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
         nodoRaiz = null;
     }
 
+    
+    private static <E> void EliminarNodosInferiores(ArbolBinario<E> a, int cont, int nivel) throws ArbolVacioExcepcion {
+        if(!a.esVacio()&&cont<=nivel){
+            EliminarNodosInferiores(a.hijoIzq(), cont+1, nivel);
+            EliminarNodosInferiores(a.hijoDer(), cont+1, nivel);
+            if(cont == nivel){
+                a.setHijoDer(null);
+                a.setHijoIzq(null);
+            }
+        }
+    }
+    
     @Override
-    public void EliminarNodosInferiores() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void EliminarNodosInferiores(int nivel) {
+        if(!esVacio()){
+            EliminarNodosInferiores(((ArbolBinario<E>)nodoRaiz).hijoIzq(), 1, nivel);
+            EliminarNodosInferiores(((ArbolBinario<E>)nodoRaiz).hijoDer(), 1, nivel);
+        }
     }
 
     

@@ -15,5 +15,5 @@ public interface ArbolBinario<E> {
     public abstract void setHijoDer(ArbolBinario<E> hd)
             throws ArbolVacioExcepcion;
     public abstract void suprimir();
-    public abstract void EliminarNodosInferiores();
+    public abstract void EliminarNodosInferiores(int nivel);
 }
