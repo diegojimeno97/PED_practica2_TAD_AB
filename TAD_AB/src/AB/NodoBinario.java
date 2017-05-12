@@ -8,9 +8,9 @@ public class NodoBinario<E> {
     private NodoBinario<E> der;
     
     public NodoBinario(E e, NodoBinario<E> hi, NodoBinario<E> hd){
-        elemento = e;
-        izq = hi;
-        der = hd;
+        this.elemento = e;
+        this.izq = hi;
+        this.der = hd;
     }
     
     public E getElemento(){
