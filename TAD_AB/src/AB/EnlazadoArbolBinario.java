@@ -30,7 +30,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario {
     }
     
     
-    private EnlazadoArbolBinario<E>(NodoBinario<E> raiz){
+    private EnlazadoArbolBinario<E>(NodoBinario <E> raiz){
         this.nodoRaiz = raiz;
     }
     
@@ -48,7 +48,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario {
     }
 
     @Override
-    public Object raiz() throws ArbolVacioExcepcion {
+    public E raiz() throws ArbolVacioExcepcion {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
