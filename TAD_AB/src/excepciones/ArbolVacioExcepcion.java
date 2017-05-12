@@ -4,13 +4,17 @@ package excepciones;
 /**
  * Clase para las excepciones personalizadas.
  */
-public class ArbolVacioExcepcion extends Exception {
+public class ArbolVacioExcepcion extends RuntimeException {
     
-       
-     public ArbolVacioExcepcion(String message) {
-        
-        super(message);
-        
+    
+    public ArbolVacioExcepcion() {      
+        super();
+    }
+    
+    public ArbolVacioExcepcion(String message) {
+
+       super(message);
+
     }
     
 }

@@ -2,8 +2,9 @@
 package AB;
 
 import excepciones.ArbolVacioExcepcion;
+import java.util.LinkedList;
 
-public class EnlazadoArbolBinario<E> implements ArbolBinario {
+public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
 
     private NodoBinario<E> nodoRaiz;
     
@@ -63,8 +64,8 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario {
     }
     
     @Override
-    public boolean esta(Object elemento) {
-        return esta(nodoRaiz, (E)elemento);
+    public boolean esta(E elemento) {
+        return esta(nodoRaiz, elemento);
     }
 
    
@@ -97,9 +98,24 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario {
     
 
     @Override
-    public void setRaiz(Object elemRaiz) throws ArbolVacioExcepcion {
+    public void setRaiz(E elemRaiz) throws ArbolVacioExcepcion {
         if(esVacio()) throw new ArbolVacioExcepcion("raiz: Árbol vacio");
-        nodoRaiz.setElemento((E) elemRaiz);
+        nodoRaiz.setElemento(elemRaiz);
+    }
+    
+    public static <E> void anchura(ArbolBinario<E> a) throws ArbolVacioExcepcion {
+        LinkedList<ArbolBinario<E>> c = (LinkedList<ArbolBinario<E>>) new LinkedList<E>();
+        c.offer(a);
+        do{
+            a = c.remove();
+            if(!a.esVacio()){
+                System.out.println(a.raiz());           
+                c.offer(a.hijoIzq());
+                c.offer(a.hijoDer());
+                
+            }
+            
+        }while(!c.isEmpty());
     }
   
     
