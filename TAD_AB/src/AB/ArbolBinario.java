@@ -1,4 +1,4 @@
-package practica2;
+package AB;
 
 import excepciones.ArbolVacioExcepcion;
 
