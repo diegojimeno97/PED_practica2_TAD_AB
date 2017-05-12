@@ -40,8 +40,6 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     }
 
 
-   
-
     @Override
     public ArbolBinario hijoIzq() throws ArbolVacioExcepcion {
         if(esVacio()) throw new ArbolVacioExcepcion("hijoIzq: Árbol vacio");
@@ -118,5 +116,31 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
         }while(!c.isEmpty());
     }
   
+    
+    public static <E> void preorden(ArbolBinario<E> a) throws ArbolVacioExcepcion {
+        if(!a.esVacio()){
+            System.out.print(a.raiz() +"");
+            preorden(a.hijoIzq());
+            preorden(a.hijoDer());
+        }
+    }
+    
+    
+    public static <E> void inorden(ArbolBinario<E> a) throws ArbolVacioExcepcion {
+        if(!a.esVacio()){
+            preorden(a.hijoIzq());
+            System.out.print(a.raiz() +"");
+            preorden(a.hijoDer());
+        }
+    }
+    
+    
+    public static <E> void postorden(ArbolBinario<E> a) throws ArbolVacioExcepcion {
+        if(!a.esVacio()){
+            preorden(a.hijoIzq());
+            preorden(a.hijoDer());
+            System.out.print(a.raiz() +"");
+        }
+    }
     
 }
