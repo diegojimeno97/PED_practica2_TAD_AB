@@ -48,6 +48,11 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario {
 
 
     @Override
+    public E raiz() throws ArbolVacioExcepcion {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public ArbolBinario hijoIzq() throws ArbolVacioExcepcion {
         if(esVacio()) throw new ArbolVacioExcepcion("hijoIzq: Árbol vacio");
         return new EnlazadoArbolBinario<E>(nodoRaiz.getIzq());
