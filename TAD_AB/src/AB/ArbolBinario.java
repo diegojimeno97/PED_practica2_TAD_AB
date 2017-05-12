@@ -8,7 +8,7 @@ public interface ArbolBinario<E> {
     public E raiz() throws ArbolVacioExcepcion;
     public ArbolBinario<E>hijoIzq() throws ArbolVacioExcepcion;
     public ArbolBinario<E>hijoDer() throws ArbolVacioExcepcion;
-    public boolean esta(E elmento);
+    public boolean esta(E elemento);
     public void setRaiz(E elemRaiz) throws ArbolVacioExcepcion;
     public void setHijoIzq(ArbolBinario<E> hi)
             throws ArbolVacioExcepcion;
