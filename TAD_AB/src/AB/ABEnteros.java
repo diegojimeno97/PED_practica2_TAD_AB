@@ -9,7 +9,9 @@ package AB;
  *
  * @author Home
  */
-public class ABEnteros<E extends Number> extends EnlazadoArbolBinario{
+public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
+    
+    
     
     public void crearAB1(){
         //TODO
