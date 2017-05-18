@@ -6,6 +6,7 @@
 package Prueba;
 
 import AB.ABEnteros;
+import AB.NodoBinario;
 
 /**
  *
@@ -13,11 +14,15 @@ import AB.ABEnteros;
  */
 public class PruebaABEnteros {
     
+    
     private ABEnteros<Integer> aB1;
     private ABEnteros<Integer> aB2;
     
+    public PruebaABEnteros(){}
+    
     public void CrearAB1(){
-        //TODO
+        aB1 = new ABEnteros();
+        aB1 = aB1.crearAB1();
     }
     
     public void CrearAB2(){
@@ -38,6 +43,11 @@ public class PruebaABEnteros {
     
     public void mostrarMinimoValorNivel(){
         //TODO
+    }
+    
+    public void preorden(){
+        System.out.println("AB1 en preorden: ");
+        aB1.preorden(aB1);
     }
     
 }

@@ -8,6 +8,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
 
     private NodoBinario<E> nodoRaiz;
     
+    //FALTA TAD
     public EnlazadoArbolBinario(){
         nodoRaiz = null;
     }
@@ -16,10 +17,25 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     public EnlazadoArbolBinario(E elemRaiz, ArbolBinario<E> hi,
             ArbolBinario<E> hd) throws NullPointerException{
       
-        if(hi==null||hd==null) throw new NullPointerException();
-        nodoRaiz = new NodoBinario<E>(elemRaiz,
-                ((EnlazadoArbolBinario<E>)hi).nodoRaiz,
+        //if(hi==null||hd==null) throw new NullPointerException();
+        if (hi == null){
+            nodoRaiz = new NodoBinario<E>(elemRaiz,null,
                 ((EnlazadoArbolBinario<E>)hd).nodoRaiz);
+        } else if(hd == null){
+            nodoRaiz = new NodoBinario<E>(elemRaiz,
+                ((EnlazadoArbolBinario<E>)hi).nodoRaiz,null);
+        }else{
+            nodoRaiz = new NodoBinario<E>(elemRaiz,
+                    ((EnlazadoArbolBinario<E>)hi).nodoRaiz,
+                    ((EnlazadoArbolBinario<E>)hd).nodoRaiz);
+        }
+        
+    }
+    
+    
+    //FALTA TAD
+    public EnlazadoArbolBinario(E elemRaiz){
+        nodoRaiz = new NodoBinario<E>(elemRaiz);
     }
     
     
@@ -134,7 +150,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     
     public static <E> void preorden(ArbolBinario<E> a) throws ArbolVacioExcepcion {
         if(!a.esVacio()){
-            System.out.print(a.raiz() +"");
+            System.out.print(a.raiz() +" ");
             preorden(a.hijoIzq());
             preorden(a.hijoDer());
         }
@@ -144,7 +160,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     public static <E> void inorden(ArbolBinario<E> a) throws ArbolVacioExcepcion {
         if(!a.esVacio()){
             preorden(a.hijoIzq());
-            System.out.print(a.raiz() +"");
+            System.out.print(a.raiz() +" ");
             preorden(a.hijoDer());
         }
     }
@@ -154,7 +170,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
         if(!a.esVacio()){
             preorden(a.hijoIzq());
             preorden(a.hijoDer());
-            System.out.print(a.raiz() +"");
+            System.out.print(a.raiz() +" ");
         }
     }
     

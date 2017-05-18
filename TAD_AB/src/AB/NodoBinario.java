@@ -13,6 +13,13 @@ public class NodoBinario<E> {
         this.der = hd;
     }
     
+    //FALTA TAD
+    public NodoBinario(E e){
+        this.elemento = e;
+        this.izq = null;
+        this.der = null;
+    }
+    
     public E getElemento(){
         return elemento;
     }
