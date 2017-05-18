@@ -16,8 +16,27 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
         super(elemRaiz,hi,hd);
     }
     
-    public void crearAB1(){
-        
+    public ABEnteros(E elemRaiz) {
+        super(elemRaiz);
+    }
+    
+    public ABEnteros() {}
+    
+    public ABEnteros crearAB1(){
+        ABEnteros aB1;
+        ABEnteros hd2 = new ABEnteros(18);
+        ABEnteros hi2 = new ABEnteros(3);
+        ABEnteros hi1 = new ABEnteros(17,hi2,hd2);
+        ABEnteros hd1 = new ABEnteros(19);
+        ABEnteros hi = new ABEnteros(71,hi1,hd1);
+        ABEnteros hd4 = new ABEnteros(110);
+        ABEnteros hi3 = new ABEnteros(108,null,hd4);
+        ABEnteros hd3 = new ABEnteros(245);
+        ArbolBinario hd = new ABEnteros(240,hi3,hd3);//revisar
+        /*ABEnteros hi = new ABEnteros(71);
+        ABEnteros hd = new ABEnteros(240);*/
+        aB1 = new ABEnteros(104, hi, hd);
+        return aB1;
     }
     
     public void crearAB2(){
@@ -43,13 +62,13 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
         return busqueda;
     }
     
-    public boolean EsABB(ArbolBinario<Integer> a){
+    public boolean EsABB(ArbolBinario<Integer> a){ //comprobar
        boolean busqueda = true;
        busqueda = EsABB(a,busqueda);
        return busqueda;
     }
     
-    private int RaizIgualNodosInternos(ArbolBinario<Integer> a, int cont){
+    private int RaizIgualNodosInternos(ArbolBinario<Integer> a, int cont){ //comprobar
         if(!a.esVacio()){
             if(!a.hijoIzq().esVacio() && !a.hijoDer().esVacio()){
                     cont = RaizIgualNodosInternos(a.hijoIzq(), cont+1);
@@ -59,7 +78,7 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
         return cont;
     }
     
-    public boolean RaizIgualNodosInternos(){
+    public boolean RaizIgualNodosInternos(){ //comprobar
         int cont = 0;
         cont = RaizIgualNodosInternos((ArbolBinario<Integer>)raiz(), cont);
         if((Integer)raiz() == cont) return true;

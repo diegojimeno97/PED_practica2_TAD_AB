@@ -5,6 +5,7 @@
  */
 package menu;
 
+import Prueba.PruebaABEnteros;
 import java.util.Scanner;
 import excepciones.*;
 /**
@@ -31,6 +32,8 @@ public class main {
         //PruebaABEnteros operacion = new PruebaABEnteros();
         boolean continuar = true;
         boolean listaCreada = false;
+        
+        PruebaABEnteros menu = new PruebaABEnteros();
         
         do{
             System.out.println("\t+++++ MENÚ AB +++++");
@@ -65,9 +68,13 @@ public class main {
             
             switch(opcion){
                 
-                case "1": ;break;
+                case "1": 
+                    menu.CrearAB1();
+                    System.out.println("creado AB1");
+                    listaCreada = true;
+                    break;
                             
-                case "2":  break;
+                case "2": menu.preorden(); break;
                 
                 case "3":  break;
                 
