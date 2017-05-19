@@ -70,17 +70,18 @@ public class main {
                 
                 case "1": 
                     menu.CrearAB1();
-                    System.out.println("creado AB1");
+                    menu.CrearAB2();
+                    System.out.println("creado AB1 y AB2");
                     listaCreada = true;
                     break;
                             
-                case "2": menu.preorden(); break;
+                case "2": menu.preordenAB1(); break;
                 
-                case "3":  break;
+                case "3": menu.inordenAB2(); break;
                 
-                case "4":  break;
+                case "4": menu.comprobarABB();break;
             
-                case "5": break;
+                case "5": menu.siRaizIgualNodosInternos(); break;
                 
                 case "6":  break;
                 

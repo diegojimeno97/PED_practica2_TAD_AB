@@ -24,27 +24,32 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
     
     public ABEnteros crearAB1(){
         ABEnteros aB1;
-        ABEnteros hd2 = new ABEnteros(18);
-        ABEnteros hi2 = new ABEnteros(3);
-        ABEnteros hi1 = new ABEnteros(17,hi2,hd2);
-        ABEnteros hd1 = new ABEnteros(19);
-        ABEnteros hi = new ABEnteros(71,hi1,hd1);
-        ABEnteros hd4 = new ABEnteros(110);
-        ABEnteros hi3 = new ABEnteros(108,null,hd4);
-        ABEnteros hd3 = new ABEnteros(245);
-        ArbolBinario hd = new ABEnteros(240,hi3,hd3);//revisar
-        /*ABEnteros hi = new ABEnteros(71);
-        ABEnteros hd = new ABEnteros(240);*/
+        ArbolBinario hd2 = new ABEnteros(18);
+        ArbolBinario hi2 = new ABEnteros(3);
+        ArbolBinario hi1 = new ABEnteros(17,hi2,hd2);
+        ArbolBinario hd1 = new ABEnteros(19);
+        ArbolBinario hi = new ABEnteros(71,hi1,hd1);
+        ArbolBinario hd4 = new ABEnteros(110);
+        ArbolBinario hi3 = new ABEnteros(108,null,hd4);
+        ArbolBinario hd3 = new ABEnteros(245);
+        ArbolBinario hd = new ABEnteros(240,hi3,hd3);
         aB1 = new ABEnteros(104, hi, hd);
         return aB1;
     }
     
-    public void crearAB2(){
-        //TODO
+    public ABEnteros crearAB2(){
+        ABEnteros aB2;
+        ArbolBinario hi1 = new ABEnteros(0);
+        ArbolBinario hi = new ABEnteros(1,hi1,null);
+        ArbolBinario hi3 = new ABEnteros(3);
+        ArbolBinario hd3 = new ABEnteros(7);
+        ArbolBinario hd = new ABEnteros(5,hi3,hd3);
+        aB2 = new ABEnteros(2, hi, hd);
+        return aB2;
     }
     
     
-    private boolean EsABB(ArbolBinario<Integer> a, boolean busqueda) { //comprobar
+    private boolean EsABB(ArbolBinario<Integer> a, boolean busqueda) {
         if(busqueda){
             if(!a.esVacio()){
                 if(!a.hijoIzq().esVacio()){
@@ -62,26 +67,26 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
         return busqueda;
     }
     
-    public boolean EsABB(ArbolBinario<Integer> a){ //comprobar
+    public boolean EsABB(ArbolBinario<Integer> a){ 
        boolean busqueda = true;
        busqueda = EsABB(a,busqueda);
        return busqueda;
     }
     
-    private int RaizIgualNodosInternos(ArbolBinario<Integer> a, int cont){ //comprobar
+    private int RaizIgualNodosInternos(ArbolBinario<Integer> a, int cont){ 
         if(!a.esVacio()){
-            if(!a.hijoIzq().esVacio() && !a.hijoDer().esVacio()){
-                    cont = RaizIgualNodosInternos(a.hijoIzq(), cont+1);
-                    cont = RaizIgualNodosInternos(a.hijoDer(), cont+1);
+            if(!a.hijoIzq().esVacio() || !a.hijoDer().esVacio()){
+                cont = RaizIgualNodosInternos(a.hijoIzq(), cont+1);
+                cont = RaizIgualNodosInternos(a.hijoDer(), cont);
             } else return cont;
         }
         return cont;
     }
     
-    public boolean RaizIgualNodosInternos(){ //comprobar
+    public boolean RaizIgualNodosInternos(ArbolBinario<Integer> a){ 
         int cont = 0;
-        cont = RaizIgualNodosInternos((ArbolBinario<Integer>)raiz(), cont);
-        if((Integer)raiz() == cont) return true;
+        cont = RaizIgualNodosInternos(a, cont);
+        if((Integer)raiz() == cont-1) return true;
         else return false;
     }
     
