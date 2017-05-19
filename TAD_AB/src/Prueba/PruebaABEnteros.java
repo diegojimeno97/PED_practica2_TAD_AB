@@ -6,7 +6,6 @@
 package Prueba;
 
 import AB.ABEnteros;
-import AB.NodoBinario;
 
 /**
  *
@@ -26,15 +25,27 @@ public class PruebaABEnteros {
     }
     
     public void CrearAB2(){
-        //TODO
+        aB2 = new ABEnteros();
+        aB2 = aB2.crearAB2();
     }
     
     public void comprobarABB(){
-        //TODO
+        System.out.print("AB1");
+        if(!aB1.EsABB(aB1)) System.out.print(" no");
+        System.out.println(" es Árbol Binario de Búsqueda");
+        System.out.print("AB2");
+        if(!aB2.EsABB(aB2)) System.out.print(" no");
+        System.out.println(" es Árbol Binario de Búsqueda");
+        
     }
     
     public void siRaizIgualNodosInternos(){
-        //TODO
+        System.out.print("AB1: ");
+        if(aB1.RaizIgualNodosInternos(aB1)) System.out.println(" Raiz igual al número de nodos internos");
+        else System.out.println("La raíz no es igual al numero de nodos internos");
+        System.out.print("AB2: ");
+        if(aB2.RaizIgualNodosInternos(aB2)) System.out.println(" Raiz igual al número de nodos internos");
+        else System.out.println("La raíz no es igual al numero de nodos internos");
     }
     
     public void eliminarNodosInferiores(int nivel){
@@ -45,9 +56,17 @@ public class PruebaABEnteros {
         //TODO
     }
     
-    public void preorden(){
+    public void preordenAB1(){
         System.out.println("AB1 en preorden: ");
         aB1.preorden(aB1);
+        System.out.println("");
+    }
+    
+    
+    public void inordenAB2(){
+        System.out.println("AB2 en inorden: ");
+        aB2.inorden(aB2);
+        System.out.println("");
     }
     
 }
