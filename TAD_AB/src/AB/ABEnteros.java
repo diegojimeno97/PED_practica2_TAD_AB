@@ -9,7 +9,7 @@ package AB;
  *
  * @author Home
  */
-public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
+public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implements ArbolBinario{
     
     public ABEnteros(E elemRaiz, ArbolBinario<E> hi,
             ArbolBinario<E> hd) {
@@ -22,8 +22,8 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
     
     public ABEnteros() {}
     
-    public ABEnteros crearAB1(){
-        ABEnteros aB1;
+    public ABEnteros crearAB1(){ //revisar metodos crear AB puede ser que sea mejor implementarlos en PruebaABENteros
+        /*ABEnteros aB1;
         ArbolBinario hd2 = new ABEnteros(18);
         ArbolBinario hi2 = new ABEnteros(3);
         ArbolBinario hi1 = new ABEnteros(17,hi2,hd2);
@@ -33,8 +33,8 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
         ArbolBinario hi3 = new ABEnteros(108,null,hd4);
         ArbolBinario hd3 = new ABEnteros(245);
         ArbolBinario hd = new ABEnteros(240,hi3,hd3);
-        aB1 = new ABEnteros(104, hi, hd);
-        return aB1;
+        aB1 = new ABEnteros(104, hi, hd);*/
+        return null;
     }
     
     public ABEnteros crearAB2(){
@@ -67,9 +67,9 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
         return busqueda;
     }
     
-    public boolean EsABB(ArbolBinario<Integer> a){ 
+    public boolean EsABB(){ 
        boolean busqueda = true;
-       busqueda = EsABB(a,busqueda);
+       busqueda = EsABB(this,busqueda);
        return busqueda;
     }
     
@@ -83,18 +83,81 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
         return cont;
     }
     
-    public boolean RaizIgualNodosInternos(ArbolBinario<Integer> a){ 
+    public boolean RaizIgualNodosInternos(){ 
         int cont = 0;
-        cont = RaizIgualNodosInternos(a, cont);
+        cont = RaizIgualNodosInternos(this, cont);
         if((Integer)raiz() == cont-1) return true;
         else return false;
     }
     
-    public void MinimoValorNivel(){
-        //TODO
+    public int MinimoValorNivel(int nivel){
+        
+        return MinimoValorNivel(this, 0, nivel, MaxValor(this, (int)raiz()));
+              
+    }
+    
+    
+    /**
+     * Metodo que busca en el AB el valor minimo del nivel indicado.
+     * Para ello se llama recursivamente recorriendo los nodos hasta llegar al 
+     * caso base, este es que el arbol este vacio y que este en un nivel 
+     * superior al indicado. Sino esta en el caso base y se esta en el nivel
+     * deseado del arbol comprueba el valor del nodo actual con el que se le 
+     * pasa como parametro, si el valor actual es menor lo sobreescribe y lo 
+     * pasa como parametro a la siguiente llamada recursiva.
+     * @param a
+     * @param cont
+     * @param nivel
+     * @param min
+     * @return 
+     */
+    public int MinimoValorNivel(ArbolBinario<Integer> a, int cont,int nivel,int min ){
+ 
+        if(!a.esVacio() && cont<= nivel){
+                
+            if (cont == nivel){
+                if(a.raiz()<=min) min = a.raiz();
+                else min = min;
+            }               
+            min=MinimoValorNivel(a.hijoIzq(), cont+1, nivel, min);
+            min=MinimoValorNivel(a.hijoDer(), cont+1, nivel, min);
+            return min;
+
+        }else return min;     
+    }
+    
+    /**
+     * Metodo calcula el valor maximo de todo el AB.
+     * Mediante recursividad recorre todo los nodos del AB, comprobando el valor
+     * de cada uno de los nodos con que recive como parametro, si el nodo actual
+     * es mayor se sobreescribe y este nuevo valor se pasa como parametro en la
+     * siguiente llamada recursiva.
+     * @param a
+     * @param max
+     * @return 
+     */
+    public int MaxValor(ArbolBinario<Integer> a,int max ){
+
+        if(!a.esVacio()){                            
+            if(a.raiz()>=max) max = a.raiz();           
+            max = MaxValor(a.hijoIzq(), max);
+            max = MaxValor(a.hijoDer(), max);
+            return max;         
+        }else return max;     
     }
     
     public int NivelesAB(){
+        //TODO
+        return 1;
+    }
+    
+    public int NivelesAB(ArbolBinario<Integer> a, int niveles){
+        
+        if(!a.esVacio()){
+            
+            
+            
+        }
         //TODO
         return 1;
     }

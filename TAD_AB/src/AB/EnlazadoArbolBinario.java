@@ -6,11 +6,11 @@ import java.util.LinkedList;
 
 public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
 
-    private NodoBinario<E> nodoRaiz;
+    protected NodoBinario<E> nodoRaiz;
     
     //FALTA TAD
     public EnlazadoArbolBinario(){
-        nodoRaiz = null;
+        this.nodoRaiz = null;
     }
     
     
@@ -19,13 +19,13 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
       
         //if(hi==null||hd==null) throw new NullPointerException();
         if (hi == null){
-            nodoRaiz = new NodoBinario<E>(elemRaiz,null,
+            this.nodoRaiz = new NodoBinario<E>(elemRaiz,null,
                 ((EnlazadoArbolBinario<E>)hd).nodoRaiz);
         } else if(hd == null){
-            nodoRaiz = new NodoBinario<E>(elemRaiz,
+            this.nodoRaiz = new NodoBinario<E>(elemRaiz,
                 ((EnlazadoArbolBinario<E>)hi).nodoRaiz,null);
         }else{
-            nodoRaiz = new NodoBinario<E>(elemRaiz,
+            this.nodoRaiz = new NodoBinario<E>(elemRaiz,
                     ((EnlazadoArbolBinario<E>)hi).nodoRaiz,
                     ((EnlazadoArbolBinario<E>)hd).nodoRaiz);
         }
@@ -35,7 +35,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     
     //FALTA TAD
     public EnlazadoArbolBinario(E elemRaiz){
-        nodoRaiz = new NodoBinario<E>(elemRaiz);
+        this.nodoRaiz = new NodoBinario<E>(elemRaiz);
     }
     
     
@@ -105,7 +105,8 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     }
 
     
-    private static <E> void EliminarNodosInferiores(ArbolBinario<E> a, int cont, int nivel) throws ArbolVacioExcepcion {
+    private static <E> void EliminarNodosInferiores(ArbolBinario<E> a, int cont, 
+            int nivel) throws ArbolVacioExcepcion {
         if(!a.esVacio()&&cont<=nivel){
             EliminarNodosInferiores(a.hijoIzq(), cont+1, nivel);
             EliminarNodosInferiores(a.hijoDer(), cont+1, nivel);
@@ -119,8 +120,10 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     @Override
     public void EliminarNodosInferiores(int nivel) {
         if(!esVacio()){
-            EliminarNodosInferiores(((ArbolBinario<E>)nodoRaiz).hijoIzq(), 1, nivel);
-            EliminarNodosInferiores(((ArbolBinario<E>)nodoRaiz).hijoDer(), 1, nivel);
+            EliminarNodosInferiores(
+                    ((ArbolBinario<E>)nodoRaiz).hijoIzq(), 1, nivel);
+            EliminarNodosInferiores(
+                    ((ArbolBinario<E>)nodoRaiz).hijoDer(), 1, nivel);
         }
     }
 
