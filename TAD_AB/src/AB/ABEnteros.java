@@ -5,6 +5,8 @@
  */
 package AB;
 
+import java.io.IOException;
+
 /**
  *
  * @author Home
@@ -20,35 +22,7 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
         super(elemRaiz);
     }
     
-    public ABEnteros() {}
-    
-    public ABEnteros crearAB1(){ //revisar metodos crear AB puede ser que sea mejor implementarlos en PruebaABENteros
-        /*ABEnteros aB1;
-        ArbolBinario hd2 = new ABEnteros(18);
-        ArbolBinario hi2 = new ABEnteros(3);
-        ArbolBinario hi1 = new ABEnteros(17,hi2,hd2);
-        ArbolBinario hd1 = new ABEnteros(19);
-        ArbolBinario hi = new ABEnteros(71,hi1,hd1);
-        ArbolBinario hd4 = new ABEnteros(110);
-        ArbolBinario hi3 = new ABEnteros(108,null,hd4);
-        ArbolBinario hd3 = new ABEnteros(245);
-        ArbolBinario hd = new ABEnteros(240,hi3,hd3);
-        aB1 = new ABEnteros(104, hi, hd);*/
-        return null;
-    }
-    
-    public ABEnteros crearAB2(){
-        ABEnteros aB2;
-        ArbolBinario hi1 = new ABEnteros(0);
-        ArbolBinario hi = new ABEnteros(1,hi1,null);
-        ArbolBinario hi3 = new ABEnteros(3);
-        ArbolBinario hd3 = new ABEnteros(7);
-        ArbolBinario hd = new ABEnteros(5,hi3,hd3);
-        aB2 = new ABEnteros(2, hi, hd);
-        return aB2;
-    }
-    
-    
+
     private boolean EsABB(ArbolBinario<Integer> a, boolean busqueda) {
         if(busqueda){
             if(!a.esVacio()){
@@ -94,7 +68,7 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
      /**
      * Metodo calcula el valor maximo de todo el AB.
      * Mediante recursividad recorre todo los nodos del AB, comprobando el valor
-     * de cada uno de los nodos con que recive como parametro, si el nodo actual
+     * de cada uno de los nodos con que recibe como parametro, si el nodo actual
      * es mayor se sobreescribe y este nuevo valor se pasa como parametro en la
      * siguiente llamada recursiva.
      * @param a
@@ -133,6 +107,9 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
      * deseado del arbol comprueba el valor del nodo actual con el que se le 
      * pasa como parametro, si el valor actual es menor lo sobreescribe y lo 
      * pasa como parametro a la siguiente llamada recursiva.
+     * El metodo en la primera llamada tiene como parametro min el maximo valor
+     * del árbol (MaxValor())evitando asi pasar como primer parametro un valor 
+     * aleatorio que pueda suponer un  problema o error en el metodo.
      * @param a
      * @param cont
      * @param nivel
@@ -188,6 +165,6 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
     }
     
     
-    
+  
     
 }

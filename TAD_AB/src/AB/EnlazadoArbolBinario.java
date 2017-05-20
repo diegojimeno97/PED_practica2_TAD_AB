@@ -8,11 +8,6 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
 
     protected NodoBinario<E> nodoRaiz;
     
-    //FALTA TAD
-    public EnlazadoArbolBinario(){
-        this.nodoRaiz = null;
-    }
-    
     
     public EnlazadoArbolBinario(E elemRaiz, ArbolBinario<E> hi,
             ArbolBinario<E> hd) throws NullPointerException{
@@ -101,10 +96,10 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
 
     @Override
     public void suprimir() {
-        nodoRaiz = null;
+        this.nodoRaiz = null;
     }
 
-    
+    /*
     private static <E> void EliminarNodosInferiores(ArbolBinario<E> a, int cont, 
             int nivel) throws ArbolVacioExcepcion {
         if(!a.esVacio()&&cont<=nivel){
@@ -125,9 +120,49 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
             EliminarNodosInferiores(
                     ((ArbolBinario<E>)nodoRaiz).hijoDer(), 1, nivel);
         }
-    }
-
+    }*/
     
+    
+    /**
+     * Metodo lanzadera de EliminarNodosInferiores que pasa como parametro
+     * el nivel dado por el usuario para eliminar los nodos.
+     * @param nivel 
+     */
+     @Override
+    public void EliminarNodosInferiores(int nivel){
+        
+        EliminarNodosInferiores(this,0,nivel);
+       
+    }
+    
+    
+    /**
+     * Metodo Eliminar nodos Inferiores. Mediante recursividad elimina las
+     * referencias a sus hijos de cada nodo que se encuentre en el nivel dado.
+     * @param <E>
+     * @param a
+     * @param cont
+     * @param nivel
+     * @throws ArbolVacioExcepcion 
+     */
+    public static <E> void EliminarNodosInferiores(ArbolBinario<E> a, int cont, 
+            int nivel)throws ArbolVacioExcepcion {
+        
+        if(!a.esVacio() && cont <= nivel){
+            
+            if(cont == nivel){
+                if(!a.hijoIzq().esVacio()) 
+                ((EnlazadoArbolBinario<E>)a).nodoRaiz.setIzq(null);
+                if(!a.hijoDer().esVacio())
+                ((EnlazadoArbolBinario<E>)a).nodoRaiz.setDer(null);                       
+            }              
+            EliminarNodosInferiores(a.hijoIzq(),cont+1,nivel);
+            EliminarNodosInferiores(a.hijoDer(),cont+1,nivel); 
+                   
+        }
+               
+    }
+     
 
     @Override
     public void setRaiz(E elemRaiz) throws ArbolVacioExcepcion {
@@ -135,23 +170,33 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
         nodoRaiz.setElemento(elemRaiz);
     }
     
-    public static <E> void anchura(ArbolBinario<E> a) throws ArbolVacioExcepcion {
-        LinkedList<ArbolBinario<E>> c = (LinkedList<ArbolBinario<E>>) new LinkedList<E>();
+    public static <E> void anchura(ArbolBinario<E> a) 
+            throws ArbolVacioExcepcion {
+        LinkedList<ArbolBinario<E>> c = 
+                (LinkedList<ArbolBinario<E>>) new LinkedList<E>();
         c.offer(a);
         do{
             a = c.remove();
             if(!a.esVacio()){
                 System.out.println(a.raiz());           
                 c.offer(a.hijoIzq());
-                c.offer(a.hijoDer());
-                
+                c.offer(a.hijoDer());               
             }
             
         }while(!c.isEmpty());
     }
   
     
-    public static <E> void preorden(ArbolBinario<E> a) throws ArbolVacioExcepcion {
+    
+    /**
+     * Metodo generico preorder que muestra por pantalla el listado de un árbol
+     * en PreOrden.
+     * @param <E>
+     * @param a
+     * @throws ArbolVacioExcepcion 
+     */
+    public static <E> void preorden(ArbolBinario<E> a) 
+            throws ArbolVacioExcepcion {
         if(!a.esVacio()){
             System.out.print(a.raiz() +" ");
             preorden(a.hijoIzq());
@@ -160,19 +205,34 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     }
     
     
-    public static <E> void inorden(ArbolBinario<E> a) throws ArbolVacioExcepcion {
+    /**
+     * Metodo generico inorden que muestra por pantalla el listado de un árbol
+     * en InOrden.
+     * @param <E>
+     * @param a
+     * @throws ArbolVacioExcepcion 
+     */
+    public static <E> void inorden(ArbolBinario<E> a) 
+            throws ArbolVacioExcepcion {
         if(!a.esVacio()){
-            preorden(a.hijoIzq());
+            inorden(a.hijoIzq());
             System.out.print(a.raiz() +" ");
-            preorden(a.hijoDer());
+            inorden(a.hijoDer());
         }
     }
     
-    
-    public static <E> void postorden(ArbolBinario<E> a) throws ArbolVacioExcepcion {
+    /**
+     * Metodo generico postorden que muestra por pantalla el listado de un árbol
+     * en PostOrden.
+     * @param <E>
+     * @param a
+     * @throws ArbolVacioExcepcion 
+     */
+    public static <E> void postorden(ArbolBinario<E> a) 
+            throws ArbolVacioExcepcion {
         if(!a.esVacio()){
-            preorden(a.hijoIzq());
-            preorden(a.hijoDer());
+            postorden(a.hijoIzq());
+            postorden(a.hijoDer());
             System.out.print(a.raiz() +" ");
         }
     }
