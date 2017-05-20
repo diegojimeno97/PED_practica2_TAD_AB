@@ -90,6 +90,34 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
         else return false;
     }
     
+    
+     /**
+     * Metodo calcula el valor maximo de todo el AB.
+     * Mediante recursividad recorre todo los nodos del AB, comprobando el valor
+     * de cada uno de los nodos con que recive como parametro, si el nodo actual
+     * es mayor se sobreescribe y este nuevo valor se pasa como parametro en la
+     * siguiente llamada recursiva.
+     * @param a
+     * @param max
+     * @return El valor maximo contenido en los nodos del AB.
+     */
+    public int MaxValor(ArbolBinario<Integer> a,int max ){
+
+        if(!a.esVacio()){                            
+            if(a.raiz()>=max) max = a.raiz();           
+            max = MaxValor(a.hijoIzq(), max);
+            max = MaxValor(a.hijoDer(), max);
+            return max;         
+        }else return max;     
+    }
+    
+    
+    /**
+     * Metodo lanzadera de MinimoValorNivel,
+     * @param nivel
+     * @return Un entero el cual es el valor minimo del valor en el nivel
+     * indicado previamente.
+     */
     public int MinimoValorNivel(int nivel){
         
         return MinimoValorNivel(this, 0, nivel, MaxValor(this, (int)raiz()));
@@ -109,7 +137,7 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
      * @param cont
      * @param nivel
      * @param min
-     * @return 
+     * @return El valor minimo del arbol.
      */
     public int MinimoValorNivel(ArbolBinario<Integer> a, int cont,int nivel,int min ){
  
@@ -119,47 +147,44 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
                 if(a.raiz()<=min) min = a.raiz();
                 else min = min;
             }               
-            min=MinimoValorNivel(a.hijoIzq(), cont+1, nivel, min);
-            min=MinimoValorNivel(a.hijoDer(), cont+1, nivel, min);
+            min = MinimoValorNivel(a.hijoIzq(), cont+1, nivel, min);
+            min = MinimoValorNivel(a.hijoDer(), cont+1, nivel, min);
             return min;
 
         }else return min;     
     }
     
+   
     /**
-     * Metodo calcula el valor maximo de todo el AB.
-     * Mediante recursividad recorre todo los nodos del AB, comprobando el valor
-     * de cada uno de los nodos con que recive como parametro, si el nodo actual
-     * es mayor se sobreescribe y este nuevo valor se pasa como parametro en la
-     * siguiente llamada recursiva.
+     * Metodo lanzadera de NivelesAB
+     * @return Los niveles de un arbol dado.
+     */
+    public int NivelesAB(){
+        
+        return NivelesAB(this, 0, 0);
+    }
+    
+    
+    /**
+     * Metodo que cuenta los niveles que tiene un AB, mediante recursividad
+     * va sumando 1 al contador por cada nivel que baja hasta llegar al
+     * caso base, de esta forma siempre que el contador sea mayor al nivel que
+     * se pasa como parametro este lo sobreescribe, asi el valor del nivel
+     * se conserva durante todo el replegado y desplegado del metodo.
      * @param a
-     * @param max
+     * @param cont
+     * @param nivel
      * @return 
      */
-    public int MaxValor(ArbolBinario<Integer> a,int max ){
-
-        if(!a.esVacio()){                            
-            if(a.raiz()>=max) max = a.raiz();           
-            max = MaxValor(a.hijoIzq(), max);
-            max = MaxValor(a.hijoDer(), max);
-            return max;         
-        }else return max;     
-    }
-    
-    public int NivelesAB(){
-        //TODO
-        return 1;
-    }
-    
-    public int NivelesAB(ArbolBinario<Integer> a, int niveles){
+    public int NivelesAB(ArbolBinario<Integer> a, int cont, int nivel){
         
         if(!a.esVacio()){
-            
-            
-            
+            if(cont>=nivel) nivel = cont;          
+            nivel = NivelesAB(a.hijoIzq(),cont+1,nivel);
+            nivel = NivelesAB(a.hijoDer(),cont+1,nivel);
+            return nivel;
         }
-        //TODO
-        return 1;
+        return nivel;
     }
     
     

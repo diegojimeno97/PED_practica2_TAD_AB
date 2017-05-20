@@ -7,6 +7,8 @@ package Prueba;
 
 
 import AB.*;
+import excepciones.ArbolVacioExcepcion;
+import java.util.Scanner;
 
 /**
  *
@@ -64,15 +66,34 @@ public class PruebaABEnteros {
           System.out.println("La raíz no es igual al numero de nodos internos");
     }
     
-    public void eliminarNodosInferiores(int nivel){
+    public void eliminarNodosInferiores(){
+        
+        int nivel = indicarNivel("para eliminar sus nodos inferiores");
         //TODO
     }
     
+    
+    
+    /**
+     * Metodo que muestra por pantalla el valor minimo de los árboles AB1 y AB2,
+     * para ello previamente pide introducir el nivel deseado.
+     */
     public void mostrarMinimoValorNivel(){
-        System.out.println("El minimo valor de AB1 en el nivel"+2+" es: "
-                +aB1.MinimoValorNivel(2));
-        System.out.println("El minimo valor de AB1 en el nivel"+1+" es: "
-                +aB2.MinimoValorNivel(1));
+        int nivel = indicarNivel("para mostra su valor minimo");
+        
+        if(nivel<=aB1.NivelesAB())
+        System.out.println("El minimo valor de AB1 en el nivel "+nivel+" es: "
+        +aB1.MinimoValorNivel(nivel));
+        else System.out.println("ERROR: no existen "+nivel+
+                " niveles en el árbol AB1. "
+                + "El árbol tiene "+aB1.NivelesAB()+" niveles");
+        
+        if(nivel<=aB2.NivelesAB())
+        System.out.println("El minimo valor de AB2 en el nivel"+nivel+" es: "
+        +aB2.MinimoValorNivel(nivel));
+        else System.out.println("ERROR: no existen "+nivel+
+                " niveles en el árbol AB2. "
+                + "El árbol tiene "+aB2.NivelesAB()+" niveles");
         
     }
     
@@ -87,6 +108,34 @@ public class PruebaABEnteros {
         System.out.println("AB2 en inorden: ");
         aB2.inorden(this.aB2);
         System.out.println("");
+    }
+    
+    
+    
+    /**
+     * Metodo auxiliar que pide introducir un nivel.
+     * @param s
+     * @return Un int que representa al nivel del arbol.
+     */
+    public int indicarNivel(String s){
+        boolean continuar = true;
+        String opcion = "";
+        do{
+        Scanner entrada = new Scanner (System.in);
+        System.out.println("Indique el nivel para "+s+" :");
+        opcion = entrada.nextLine ();
+        try{
+                if(opcion.isEmpty()||opcion.matches(".*[^0-9].*"))
+                  throw new ArbolVacioExcepcion("\t->El nivel debe ser un número.");  
+                 continuar = false;
+                
+            }catch(ArbolVacioExcepcion ex){
+                System.out.println(ex.getMessage());
+                continuar = true;
+            }
+        }while(continuar);
+        
+        return Integer.parseInt(opcion);
     }
     
 }
