@@ -36,7 +36,7 @@ public class main {
         PruebaABEnteros menu = new PruebaABEnteros();
         
         do{
-            System.out.println("\t+++++ MENÚ AB +++++");
+            System.out.println("\t\n\n+++++ MENÚ AB +++++");
             System.out.println("1. Crear AB1 y AB2");
             System.out.println("2. Listado claves AB1 PreOrder");
             System.out.println("3. Listado claves AB2 InOrder");
@@ -87,7 +87,7 @@ public class main {
                 
                 case "7": break;
             
-                case "8":  break;
+                case "8":  menu.mostrarMinimoValorNivel();break;
                 
                 case "0":  break;
                 
