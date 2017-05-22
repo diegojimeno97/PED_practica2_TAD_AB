@@ -68,7 +68,7 @@ public class main {
             
             switch(opcion){
                 
-                case "1": prueba.CrearAB1();prueba.CrearAB2();arbolcreado = true;
+                case "1": prueba.crearAB1();prueba.crearAB2();arbolcreado = true;
                             prueba.pausa();break;                           
                 case "2": prueba.preordenAB1(); break;
                 

@@ -23,17 +23,17 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
     }
     
 
-    private boolean EsABB(ArbolBinario<Integer> a, boolean busqueda) {
+    private boolean esABB(ArbolBinario<Integer> a, boolean busqueda) {
         if(busqueda){
             if(!a.esVacio()){
                 if(!a.hijoIzq().esVacio()){
                     if(a.raiz()>=a.hijoIzq().raiz()){ 
-                        busqueda = EsABB(a.hijoIzq(), busqueda);
+                        busqueda = esABB(a.hijoIzq(), busqueda);
                     } else return false;
                 } else return true;
                 if(!a.hijoDer().esVacio()){
                     if(a.raiz()<a.hijoDer().raiz()){ 
-                        busqueda = EsABB(a.hijoDer(), busqueda);
+                        busqueda = esABB(a.hijoDer(), busqueda);
                     } else return false;
                 } else return true;
             }
@@ -41,25 +41,45 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
         return busqueda;
     }
     
-    public boolean EsABB(){ 
+    /**
+     * El metodo devuelve true si el arbol es binario de busqueda y false si no.
+     * Este proceso lo realiza recorriendo el arbol de forma recursiva en 
+     * preorder, comparando los nodos hijos con el padre teniendo que ser el 
+     * hijo izquierdo siempre inferior y el derecho siempre mayor. El recorrido
+     * se hace completo mientras sea "busqueda" sea true y devuelve este 
+     * booleano. En caso de que que en cualquier momento se incumpla la 
+     * condición, este valor false será el que se devuelva, independientemente 
+     * del resto de comprobaciones.
+     * @return si es o no ABB.
+     */
+    public boolean esABB(){ 
        boolean busqueda = true;
-       busqueda = EsABB(this,busqueda);
+       busqueda = esABB(this,busqueda);
        return busqueda;
     }
     
-    private int RaizIgualNodosInternos(ArbolBinario<Integer> a, int cont){ 
+    private int raizIgualNodosInternos(ArbolBinario<Integer> a, int cont){ 
         if(!a.esVacio()){
             if(!a.hijoIzq().esVacio() || !a.hijoDer().esVacio()){
-                cont = RaizIgualNodosInternos(a.hijoIzq(), cont+1);
-                cont = RaizIgualNodosInternos(a.hijoDer(), cont);
+                cont = raizIgualNodosInternos(a.hijoIzq(), cont+1);
+                cont = raizIgualNodosInternos(a.hijoDer(), cont);
             } else return cont;
         }
         return cont;
     }
     
+    /**
+     * El método calcula si el valor contenido en la raíz es igual al numero de
+     * nodos internos del arbol. Para esto, recorre el arbol de forma recursiva
+     * contando el numero de nodos internos del arbol, sumando uno si el nodo 
+     * tiene hijo izquierdo o hijo derecho. Como siempre hay nodo raiz, y este 
+     * no es un nodo interno, le restaremos uno al final del proceso, y este 
+     * numero será el que se compare con el nodo raíz.
+     * @return Si la raís es o no igual al numero de nodos internos
+     */
     public boolean RaizIgualNodosInternos(){ 
         int cont = 0;
-        cont = RaizIgualNodosInternos(this, cont);
+        cont = raizIgualNodosInternos(this, cont);
         if((Integer)raiz() == cont-1) return true;
         else return false;
     }
@@ -75,12 +95,12 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
      * @param max
      * @return El valor maximo contenido en los nodos del AB.
      */
-    public int MaxValor(ArbolBinario<Integer> a,int max ){
+    public int maxValor(ArbolBinario<Integer> a,int max ){
 
         if(!a.esVacio()){                            
             if(a.raiz()>=max) max = a.raiz();           
-            max = MaxValor(a.hijoIzq(), max);
-            max = MaxValor(a.hijoDer(), max);
+            max = maxValor(a.hijoIzq(), max);
+            max = maxValor(a.hijoDer(), max);
             return max;         
         }else return max;     
     }
@@ -92,9 +112,9 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
      * @return Un entero el cual es el valor minimo del valor en el nivel
      * indicado previamente.
      */
-    public int MinimoValorNivel(int nivel){
+    public int minimoValorNivel(int nivel){
         
-        return MinimoValorNivel(this, 0, nivel, MaxValor(this, (int)raiz()));
+        return minimoValorNivel(this, 0, nivel, maxValor(this, (int)raiz()));
               
     }
     
@@ -116,7 +136,7 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
      * @param min
      * @return El valor minimo del arbol.
      */
-    public int MinimoValorNivel(ArbolBinario<Integer> a, int cont,int nivel,int min ){
+    public int minimoValorNivel(ArbolBinario<Integer> a, int cont,int nivel,int min ){
  
         if(!a.esVacio() && cont<= nivel){
                 
@@ -124,8 +144,8 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
                 if(a.raiz()<=min) min = a.raiz();
                 else min = min;
             }               
-            min = MinimoValorNivel(a.hijoIzq(), cont+1, nivel, min);
-            min = MinimoValorNivel(a.hijoDer(), cont+1, nivel, min);
+            min = minimoValorNivel(a.hijoIzq(), cont+1, nivel, min);
+            min = minimoValorNivel(a.hijoDer(), cont+1, nivel, min);
             return min;
 
         }else return min;     
@@ -136,9 +156,9 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
      * Metodo lanzadera de NivelesAB
      * @return Los niveles de un arbol dado.
      */
-    public int NivelesAB(){
+    public int nivelesAB(){
         
-        return NivelesAB(this, 0, 0);
+        return nivelesAB(this, 0, 0);
     }
     
     
@@ -153,12 +173,12 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
      * @param nivel
      * @return 
      */
-    public int NivelesAB(ArbolBinario<Integer> a, int cont, int nivel){
+    public int nivelesAB(ArbolBinario<Integer> a, int cont, int nivel){
         
         if(!a.esVacio()){
             if(cont>=nivel) nivel = cont;          
-            nivel = NivelesAB(a.hijoIzq(),cont+1,nivel);
-            nivel = NivelesAB(a.hijoDer(),cont+1,nivel);
+            nivel = nivelesAB(a.hijoIzq(),cont+1,nivel);
+            nivel = nivelesAB(a.hijoDer(),cont+1,nivel);
             return nivel;
         }
         return nivel;

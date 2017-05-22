@@ -38,31 +38,49 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
         this.nodoRaiz = raiz;
     }
     
+    /**
+     * Devuelve el elemento almacenado en el nodo raíz del árbol.
+     * @return
+     * @throws ArbolVacioExcepcion 
+     */
     @Override
     public E raiz() throws ArbolVacioExcepcion{
         if(esVacio()) throw new ArbolVacioExcepcion("raiz:Árbol vacío");
         return nodoRaiz.getElemento();
     }
     
-    
+    /**
+     * Indica si el arbol es o no un árbol vacio.
+     * @return 
+     */
     @Override
     public boolean esVacio() {
         return nodoRaiz==null;
     }
 
-
+    /**
+     * Devuelve un subarbol con el nodo raíz como el hijo derecho del nodo 
+     * raíz anterior.
+     * @return
+     * @throws ArbolVacioExcepcion 
+     */
     @Override
     public ArbolBinario hijoIzq() throws ArbolVacioExcepcion {
         if(esVacio()) throw new ArbolVacioExcepcion("hijoIzq: Árbol vacio");
         return new EnlazadoArbolBinario<E>(nodoRaiz.getIzq());
     }
-
+    
+    /**
+     * Devuelve un subarbol con el nodo raíz como el hijo derecho del nodo 
+     * raíz anterior.
+     * @return
+     * @throws ArbolVacioExcepcion 
+     */
     @Override
     public ArbolBinario hijoDer() throws ArbolVacioExcepcion {
         if(esVacio()) throw new ArbolVacioExcepcion("hijoDer: Árbol vacio");
         return new EnlazadoArbolBinario<E>(nodoRaiz.getDer());
     }
-    
     
     
     private boolean esta(NodoBinario<E> raiz, E elemento){
@@ -72,6 +90,12 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
         return temp;
     }
     
+    /**
+     * Indica si el elemento que se le pasa como parámetro se encuentra en el 
+     * árbol.
+     * @param elemento
+     * @return 
+     */
     @Override
     public boolean esta(E elemento) {
         return esta(nodoRaiz, elemento);
@@ -79,21 +103,34 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
 
    
     
-
+    /**
+     * Introduce el Arbol pasado como parámetro en el árbol como hijo izquierdo
+     * del nodo raíz.
+     * @param hi
+     * @throws ArbolVacioExcepcion 
+     */
     @Override
     public void setHijoIzq(ArbolBinario hi) throws ArbolVacioExcepcion {
         if(hi==null) throw new NullPointerException();
         if(esVacio()) throw new ArbolVacioExcepcion("setHijoIzq: Árbol vacio");
         nodoRaiz.setIzq(((EnlazadoArbolBinario<E>)hi).nodoRaiz);
     }
-
+    /**
+     * Introduce el Arbol pasado como parámetro en el árbol como hijo derecho
+     * del nodo raíz.
+     * @param hd
+     * @throws ArbolVacioExcepcion 
+     */
     @Override
     public void setHijoDer(ArbolBinario hd) throws ArbolVacioExcepcion {
         if(hd==null) throw new NullPointerException();
         if(esVacio()) throw new ArbolVacioExcepcion("setHijoDer: Árbol vacio");
         nodoRaiz.setIzq(((EnlazadoArbolBinario<E>)hd).nodoRaiz);
     }
-
+    
+    /**
+     * Pone a null el nodo raíz del arbol.
+     */
     @Override
     public void suprimir() {
         this.nodoRaiz = null;
@@ -163,7 +200,11 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
                
     }
      
-
+    /**
+     * Pone como raíz del arbol el elemento pasado como parámetro.
+     * @param elemRaiz
+     * @throws ArbolVacioExcepcion 
+     */
     @Override
     public void setRaiz(E elemRaiz) throws ArbolVacioExcepcion {
         if(esVacio()) throw new ArbolVacioExcepcion("raiz: Árbol vacio");
