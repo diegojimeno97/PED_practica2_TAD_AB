@@ -15,7 +15,10 @@ public class PruebaABEnteros {
     
     public PruebaABEnteros(){}
     
-    public void CrearAB1(){
+    /**
+     * Crear el arbol AB1 propuesto en la práctica.
+     */
+    public void crearAB1(){
         
         ABEnteros hd2 = new ABEnteros(18);
         ABEnteros hi2 = new ABEnteros(3);
@@ -31,7 +34,11 @@ public class PruebaABEnteros {
         
     }
     
-    public void CrearAB2(){
+    
+    /**
+     * Crear el arbol AB2 propuesto en la práctica.
+     */
+    public void crearAB2(){
         
         ArbolBinario hi1 = new ABEnteros(0);
         ArbolBinario hi = new ABEnteros(1,hi1,null);
@@ -42,16 +49,26 @@ public class PruebaABEnteros {
         System.out.println("\nÀrbol AB2 creado.");
     }
     
+    /**
+     * Metodo que llama a la función EsABB para los arboles AB1 y AB2 de la 
+     * clase ABEnteros, y nos indica si los arboles son o no árboles binarios de
+     * búsqueda.
+     */
     public void comprobarABB(){
         System.out.print("\nAB1 ");
-        if(!AB1.EsABB()) System.out.print("No ");
+        if(!AB1.esABB()) System.out.print("No ");
         System.out.println("es Árbol Binario de Búsqueda");
         System.out.print("\nAB2 ");
-        if(!AB2.EsABB()) System.out.print("No ");
+        if(!AB2.esABB()) System.out.print("No ");
         System.out.println("es Árbol Binario de Búsqueda");
         pausa();
     }
     
+    /**
+     * Método que llama a la función raizIgualNodosInternos de la clase 
+     * ABEnteros, y nos indica para AB1 y AB2 si la raíz es igual al numero de 
+     * nodos internos.
+     */
     public void siRaizIgualNodosInternos(){
         System.out.print("\nAB1: ");
         if(AB1.RaizIgualNodosInternos()) 
@@ -95,22 +112,25 @@ public class PruebaABEnteros {
     public void mostrarMinimoValorNivel(){
         int nivel = indicarNivel("para mostra su valor minimo");
         
-        if(nivel<=AB1.NivelesAB())
+        if(nivel<=AB1.nivelesAB())
         System.out.println("Árbol AB1: El valor mínimo obtenido en el nivel "
-                +nivel+" es: "+AB1.MinimoValorNivel(nivel));
+                +nivel+" es: "+AB1.minimoValorNivel(nivel));
         else System.out.println("ERROR: no existen "+nivel+" niveles en el "
-                + "árbol AB1. El árbol tiene "+AB1.NivelesAB()+" niveles");
+                + "árbol AB1. El árbol tiene "+AB1.nivelesAB()+" niveles");
         
-        if(nivel<=AB2.NivelesAB())
+        if(nivel<=AB2.nivelesAB())
         System.out.println("Árbol AB2: El valor mínimo obtenido en el nivel "
-                +nivel+" es: "+AB2.MinimoValorNivel(nivel));
+                +nivel+" es: "+AB2.minimoValorNivel(nivel));
         else System.out.println("ERROR: no existen "+nivel+" niveles en el "
-                + "árbol AB2. El árbol tiene "+AB2.NivelesAB()+" niveles");
+                + "árbol AB2. El árbol tiene "+AB2.nivelesAB()+" niveles");
         
         pausa();
         
     }
     
+    /**
+     * Imprime en preorden de forma recursiva el árbol AB1.
+     */
     public void preordenAB1(){
         System.out.println("\nAB1 en PreOrden: ");
         AB1.preorden(this.AB1);
@@ -118,7 +138,9 @@ public class PruebaABEnteros {
 
     }
     
-    
+    /**
+     * Imprime en inorden de forma recursiva el árbol AB2.
+     */
     public void inordenAB2(){
         System.out.println("\nAB2 en InOrden: ");
         AB2.inorden(this.AB2);
