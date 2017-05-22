@@ -1,24 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Prueba;
 
 
 import AB.*;
 import excepciones.ArbolVacioExcepcion;
+import java.io.IOException;
 import java.util.Scanner;
 
-/**
- *
- * @author Diego
- */
 public class PruebaABEnteros {
     
     
-    private ABEnteros<Integer> aB1;
-    private ABEnteros<Integer> aB2;
+    private ABEnteros<Integer> AB1;
+    private ABEnteros<Integer> AB2;
     
     public PruebaABEnteros(){}
     
@@ -33,47 +26,68 @@ public class PruebaABEnteros {
         ABEnteros hi3 = new ABEnteros(108,null,hd4);
         ABEnteros hd3 = new ABEnteros(245);
         ABEnteros hd = new ABEnteros(240,hi3,hd3);
-        aB1 = new ABEnteros(104, hi, hd);
+        AB1 = new ABEnteros(104, hi, hd);
+        System.out.println("\nÀrbol AB1 creado.");
         
     }
     
     public void CrearAB2(){
-        aB2 = new ABEnteros();
-        aB2 = aB2.crearAB2();
+        
+        ArbolBinario hi1 = new ABEnteros(0);
+        ArbolBinario hi = new ABEnteros(1,hi1,null);
+        ArbolBinario hi3 = new ABEnteros(3);
+        ArbolBinario hd3 = new ABEnteros(7);
+        ArbolBinario hd = new ABEnteros(5,hi3,hd3);
+        AB2 = new ABEnteros(2, hi, hd);
+        System.out.println("\nÀrbol AB2 creado.");
     }
     
     public void comprobarABB(){
-        System.out.print("AB1");
-        if(!aB1.EsABB()) System.out.print("No ");
-        System.out.println("Es Árbol Binario de Búsqueda");
-        System.out.print("AB2");
-        if(!aB2.EsABB()) System.out.print("No ");
-        System.out.println("Es Árbol Binario de Búsqueda");
-        
+        System.out.print("\nAB1 ");
+        if(!AB1.EsABB()) System.out.print("No ");
+        System.out.println("es Árbol Binario de Búsqueda");
+        System.out.print("\nAB2 ");
+        if(!AB2.EsABB()) System.out.print("No ");
+        System.out.println("es Árbol Binario de Búsqueda");
+        pausa();
     }
     
     public void siRaizIgualNodosInternos(){
-        System.out.print("AB1: ");
-        if(aB1.RaizIgualNodosInternos()) 
-          System.out.println("Raiz igual al número de nodos internos");
+        System.out.print("\nAB1: ");
+        if(AB1.RaizIgualNodosInternos()) 
+          System.out.println("Raiz igual al número de nodos internos.");
         else 
-          System.out.println("La raíz no es igual al numero de nodos internos");
+         System.out.println("La raíz no es igual al numero de nodos internos.");
         
-        System.out.print("AB2: ");
-        if(aB2.RaizIgualNodosInternos()) 
-          System.out.println("Raiz igual al número de nodos internos");
+        System.out.print("\nAB2: ");
+        if(AB2.RaizIgualNodosInternos()) 
+          System.out.println("Raiz igual al número de nodos internos.");
         else 
-          System.out.println("La raíz no es igual al numero de nodos internos");
+         System.out.println("La raíz no es igual al numero de nodos internos.");
+        
+        pausa();
     }
     
-    public void eliminarNodosInferiores(){
+    public void eliminarNodosInferiores(String s,int nivel){
         
-        int nivel = indicarNivel("para eliminar sus nodos inferiores");
-        //TODO
+        //int nivel = indicarNivel("para eliminar sus nodos inferiores");
+        switch(s){
+            case "AB1" : AB1.EliminarNodosInferiores(nivel);
+            System.out.println("\n->Nodos Inferiores al nivel "+nivel+" del "
+                    + "árbol AB1 eliminados!");
+            System.out.println("AB1 en InOrden: ");
+            AB1.inorden(this.AB1); break;
+   
+            case "AB2" : AB2.EliminarNodosInferiores(nivel);
+            System.out.println("\n->Nodos Inferiores al nivel "+nivel+" del "
+                    + "árbol AB2 eliminados!");
+            System.out.println("AB1 en InOrden: ");
+            AB2.inorden(this.AB2); break;
+        }
+        pausa();
     }
     
-    
-    
+  
     /**
      * Metodo que muestra por pantalla el valor minimo de los árboles AB1 y AB2,
      * para ello previamente pide introducir el nivel deseado.
@@ -81,33 +95,34 @@ public class PruebaABEnteros {
     public void mostrarMinimoValorNivel(){
         int nivel = indicarNivel("para mostra su valor minimo");
         
-        if(nivel<=aB1.NivelesAB())
-        System.out.println("El minimo valor de AB1 en el nivel "+nivel+" es: "
-        +aB1.MinimoValorNivel(nivel));
-        else System.out.println("ERROR: no existen "+nivel+
-                " niveles en el árbol AB1. "
-                + "El árbol tiene "+aB1.NivelesAB()+" niveles");
+        if(nivel<=AB1.NivelesAB())
+        System.out.println("Árbol AB1: El valor mínimo obtenido en el nivel "
+                +nivel+" es: "+AB1.MinimoValorNivel(nivel));
+        else System.out.println("ERROR: no existen "+nivel+" niveles en el "
+                + "árbol AB1. El árbol tiene "+AB1.NivelesAB()+" niveles");
         
-        if(nivel<=aB2.NivelesAB())
-        System.out.println("El minimo valor de AB2 en el nivel"+nivel+" es: "
-        +aB2.MinimoValorNivel(nivel));
-        else System.out.println("ERROR: no existen "+nivel+
-                " niveles en el árbol AB2. "
-                + "El árbol tiene "+aB2.NivelesAB()+" niveles");
+        if(nivel<=AB2.NivelesAB())
+        System.out.println("Árbol AB2: El valor mínimo obtenido en el nivel "
+                +nivel+" es: "+AB2.MinimoValorNivel(nivel));
+        else System.out.println("ERROR: no existen "+nivel+" niveles en el "
+                + "árbol AB2. El árbol tiene "+AB2.NivelesAB()+" niveles");
+        
+        pausa();
         
     }
     
     public void preordenAB1(){
-        System.out.println("AB1 en preorden: ");
-        aB1.preorden(this.aB1);
-        System.out.println("");
+        System.out.println("\nAB1 en PreOrden: ");
+        AB1.preorden(this.AB1);
+        pausa();
+
     }
     
     
     public void inordenAB2(){
-        System.out.println("AB2 en inorden: ");
-        aB2.inorden(this.aB2);
-        System.out.println("");
+        System.out.println("\nAB2 en InOrden: ");
+        AB2.inorden(this.AB2);
+        pausa();
     }
     
     
@@ -122,12 +137,12 @@ public class PruebaABEnteros {
         String opcion = "";
         do{
         Scanner entrada = new Scanner (System.in);
-        System.out.println("Indique el nivel para "+s+" :");
+        System.out.println("\nIndique el nivel para "+s+" : ");
         opcion = entrada.nextLine ();
         try{
-                if(opcion.isEmpty()||opcion.matches(".*[^0-9].*"))
-                  throw new ArbolVacioExcepcion("\t->El nivel debe ser un número.");  
-                 continuar = false;
+            if(opcion.isEmpty()||opcion.matches(".*[^0-9].*"))
+              throw new ArbolVacioExcepcion("\t->El nivel debe ser un número.");  
+            continuar = false;
                 
             }catch(ArbolVacioExcepcion ex){
                 System.out.println(ex.getMessage());
@@ -136,6 +151,29 @@ public class PruebaABEnteros {
         }while(continuar);
         
         return Integer.parseInt(opcion);
+    }
+    
+    
+    
+    
+     /**
+     * Método que muestra por pantalla un mensaje de salia.
+     */
+    public void salir(){
+        System.out.println
+        ("\n\tGracias por utilizar nuestro TAD ");
+    }
+    
+     
+    /**
+     * Método que nos sirve para realizat la función de pausa.
+     */ 
+    public void pausa(){
+        try {
+           System.out.println("\nPulse <Intro> para continuar...");
+           int read = System.in.read();
+        } catch (IOException ex) {}
+        System.out.println("\n");
     }
     
 }
