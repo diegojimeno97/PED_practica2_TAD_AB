@@ -23,6 +23,19 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
     }
     
 
+    /**
+     * El metodo devuelve true si el arbol es binario de busqueda y false si no.
+     * Este proceso lo realiza recorriendo el arbol de forma recursiva en 
+     * preorder, comparando los nodos hijos con el padre teniendo que ser el 
+     * hijo izquierdo siempre inferior y el derecho siempre mayor. El recorrido
+     * se hace completo mientras sea "busqueda" sea true y devuelve este 
+     * booleano. En caso de que que en cualquier momento se incumpla la 
+     * condición, este valor false será el que se devuelva, independientemente 
+     * del resto de comprobaciones.
+     * @param a
+     * @param busqueda
+     * @return 
+     */
     private boolean esABB(ArbolBinario<Integer> a, boolean busqueda) {
         if(busqueda){
             if(!a.esVacio()){
@@ -42,15 +55,8 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
     }
     
     /**
-     * El metodo devuelve true si el arbol es binario de busqueda y false si no.
-     * Este proceso lo realiza recorriendo el arbol de forma recursiva en 
-     * preorder, comparando los nodos hijos con el padre teniendo que ser el 
-     * hijo izquierdo siempre inferior y el derecho siempre mayor. El recorrido
-     * se hace completo mientras sea "busqueda" sea true y devuelve este 
-     * booleano. En caso de que que en cualquier momento se incumpla la 
-     * condición, este valor false será el que se devuelva, independientemente 
-     * del resto de comprobaciones.
-     * @return si es o no ABB.
+     * Nos indica si el árbol es o no binario de busqueda.
+     * @return 
      */
     public boolean esABB(){ 
        boolean busqueda = true;
@@ -58,6 +64,17 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
        return busqueda;
     }
     
+    /**
+     * El método calcula si el valor contenido en la raíz es igual al numero de
+     * nodos internos del arbol. Para esto, recorre el arbol de forma recursiva
+     * contando el numero de nodos internos del arbol, sumando uno si el nodo 
+     * tiene hijo izquierdo o hijo derecho. Como siempre hay nodo raiz, y este 
+     * no es un nodo interno, le restaremos uno al final del proceso, y este 
+     * numero será el que se compare con el nodo raíz.
+     * @param a
+     * @param cont
+     * @return 
+     */
     private int raizIgualNodosInternos(ArbolBinario<Integer> a, int cont){ 
         if(!a.esVacio()){
             if(!a.hijoIzq().esVacio() || !a.hijoDer().esVacio()){
@@ -69,13 +86,9 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario implement
     }
     
     /**
-     * El método calcula si el valor contenido en la raíz es igual al numero de
-     * nodos internos del arbol. Para esto, recorre el arbol de forma recursiva
-     * contando el numero de nodos internos del arbol, sumando uno si el nodo 
-     * tiene hijo izquierdo o hijo derecho. Como siempre hay nodo raiz, y este 
-     * no es un nodo interno, le restaremos uno al final del proceso, y este 
-     * numero será el que se compare con el nodo raíz.
-     * @return Si la raís es o no igual al numero de nodos internos
+     * Nos indica si el valor de la raíz es o no igual al numero de nodos
+     * internos
+     * @return Si la raíz es o no igual al numero de nodos internos
      */
     public boolean RaizIgualNodosInternos(){ 
         int cont = 0;

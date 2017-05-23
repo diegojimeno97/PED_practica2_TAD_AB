@@ -82,7 +82,13 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
         return new EnlazadoArbolBinario<E>(nodoRaiz.getDer());
     }
     
-    
+    /**
+     * Indica si el elemento que se le pasa como parámetro se encuentra en el 
+     * árbol.
+     * @param raiz
+     * @param elemento
+     * @return 
+     */
     private boolean esta(NodoBinario<E> raiz, E elemento){
         if(raiz==null) return false;
         if(raiz.getElemento().equals(elemento)) return true;
