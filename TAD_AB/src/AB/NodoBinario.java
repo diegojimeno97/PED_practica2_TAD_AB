@@ -14,6 +14,11 @@ public class NodoBinario<E> {
     }
     
     //FALTA TAD
+    /**
+     * Constructor que nos permite tener un nodo sin hijos, por lo que sus
+     * referencias a los mismos es null.
+     * @param e 
+     */
     public NodoBinario(E e){
         this.elemento = e;
         this.izq = null;
@@ -33,15 +38,15 @@ public class NodoBinario<E> {
     }
     
     public void setElemento(E e){
-        elemento = e;
+        this.elemento = e;
     }
     
     public void setIzq(NodoBinario<E> hi){
-        izq = hi;
+        this.izq = hi;
     }
     
     public void setDer(NodoBinario<E> hd){
-        der = hd;
+        this.der = hd;
     }
     
     
