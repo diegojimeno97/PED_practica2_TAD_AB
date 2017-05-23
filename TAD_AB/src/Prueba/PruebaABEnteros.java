@@ -8,12 +8,16 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class PruebaABEnteros {
-    
-    
+        
     private ABEnteros<Integer> AB1;
     private ABEnteros<Integer> AB2;
     
+    
+    /**
+     * Constructor PruebaABEnteros
+     */
     public PruebaABEnteros(){}
+    
     
     /**
      * Crear el arbol AB1 propuesto en la práctica.
@@ -30,7 +34,7 @@ public class PruebaABEnteros {
         ABEnteros hd3 = new ABEnteros(245);
         ABEnteros hd = new ABEnteros(240,hi3,hd3);
         AB1 = new ABEnteros(104, hi, hd);
-        System.out.println("\nÀrbol AB1 creado.");
+        System.out.println("\nÁrbol AB1 creado.");
         
     }
     
@@ -46,11 +50,12 @@ public class PruebaABEnteros {
         ArbolBinario hd3 = new ABEnteros(7);
         ArbolBinario hd = new ABEnteros(5,hi3,hd3);
         AB2 = new ABEnteros(2, hi, hd);
-        System.out.println("\nÀrbol AB2 creado.");
+        System.out.println("\nÁrbol AB2 creado.");
     }
     
+    
     /**
-     * Metodo que llama a la función EsABB para los arboles AB1 y AB2 de la 
+     * Método que llama a la función EsABB para los arboles AB1 y AB2 de la 
      * clase ABEnteros, y nos indica si los arboles son o no árboles binarios de
      * búsqueda.
      */
@@ -63,6 +68,7 @@ public class PruebaABEnteros {
         System.out.println("es Árbol Binario de Búsqueda");
         pausa();
     }
+    
     
     /**
      * Método que llama a la función raizIgualNodosInternos de la clase 
@@ -85,9 +91,16 @@ public class PruebaABEnteros {
         pausa();
     }
     
+    
+    /**
+     * Método eliminarNodosInferiores, llama a EliminarNodosInferiores del TAD
+     * y muestra por pantalla la lista de nodos actual, con los nodos inferiores
+     * eliminados en el nivel que se a indicado.
+     * @param s es el nombre del árbol binario con el que se va a trabajar
+     * @param nivel indicado para eliminar los nodos inferiores
+     */
     public void eliminarNodosInferiores(String s,int nivel){
         
-        //int nivel = indicarNivel("para eliminar sus nodos inferiores");
         switch(s){
             case "AB1" : AB1.EliminarNodosInferiores(nivel);
             System.out.println("\n->Nodos Inferiores al nivel "+nivel+" del "
@@ -106,7 +119,7 @@ public class PruebaABEnteros {
     
   
     /**
-     * Metodo que muestra por pantalla el valor minimo de los árboles AB1 y AB2,
+     * Método que muestra por pantalla el valor minimo de los árboles AB1 y AB2,
      * para ello previamente pide introducir el nivel deseado.
      */
     public void mostrarMinimoValorNivel(){
@@ -129,7 +142,7 @@ public class PruebaABEnteros {
     }
     
     /**
-     * Imprime en preorden de forma recursiva el árbol AB1.
+     * Imprime en preOrden de forma recursiva el árbol AB1.
      */
     public void preordenAB1(){
         System.out.println("\nAB1 en PreOrden: ");
@@ -139,7 +152,7 @@ public class PruebaABEnteros {
     }
     
     /**
-     * Imprime en inorden de forma recursiva el árbol AB2.
+     * Imprime en inOrden de forma recursiva el árbol AB2.
      */
     public void inordenAB2(){
         System.out.println("\nAB2 en InOrden: ");
@@ -150,7 +163,7 @@ public class PruebaABEnteros {
     
     
     /**
-     * Metodo auxiliar que pide introducir un nivel.
+     * Método auxiliar que pide introducir un nivel.
      * @param s
      * @return Un int que representa al nivel del arbol.
      */

@@ -9,10 +9,18 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     protected NodoBinario<E> nodoRaiz;
     
     
+    /**
+     * Constructor de EnlazadoArbolBinario, que nos permite agregar el elemento
+     * y sus hijos izquierdo y derecho o un hijo sea izquierdo o derecho en caso
+     * de tener solo uno.
+     * @param elemRaiz
+     * @param hi
+     * @param hd
+     * @throws NullPointerException 
+     */
     public EnlazadoArbolBinario(E elemRaiz, ArbolBinario<E> hi,
             ArbolBinario<E> hd) throws NullPointerException{
       
-        //if(hi==null||hd==null) throw new NullPointerException();
         if (hi == null){
             this.nodoRaiz = new NodoBinario<E>(elemRaiz,null,
                 ((EnlazadoArbolBinario<E>)hd).nodoRaiz);
@@ -29,12 +37,16 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     
     
     //FALTA TAD
+    /**
+     * Constructor que nos permite crear un árbol binario sin hijos.
+     * @param elemRaiz 
+     */
     public EnlazadoArbolBinario(E elemRaiz){
         this.nodoRaiz = new NodoBinario<E>(elemRaiz);
     }
     
     
-    private EnlazadoArbolBinario (NodoBinario<E> raiz){ //EnlazadoArbolBinario<E> 
+    private EnlazadoArbolBinario(NodoBinario<E> raiz){ //EnlazadoArbolBinario<E> 
         this.nodoRaiz = raiz;
     }
     
@@ -59,8 +71,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     }
 
     /**
-     * Devuelve un subarbol con el nodo raíz como el hijo derecho del nodo 
-     * raíz anterior.
+     * Devuelve el árbol hijo izquierdo de la raíz.
      * @return
      * @throws ArbolVacioExcepcion 
      */
@@ -71,8 +82,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     }
     
     /**
-     * Devuelve un subarbol con el nodo raíz como el hijo derecho del nodo 
-     * raíz anterior.
+     * Devuelve el árbol hijo derecho de la raíz.
      * @return
      * @throws ArbolVacioExcepcion 
      */
@@ -83,6 +93,12 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     }
     
     
+    /**
+     * Método esta, que comprueba si un elemento esta en el árbol binario.
+     * @param raiz
+     * @param elemento
+     * @return 
+     */
     private boolean esta(NodoBinario<E> raiz, E elemento){
         if(raiz==null) return false;
         if(raiz.getElemento().equals(elemento)) return true;
@@ -100,7 +116,6 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     public boolean esta(E elemento) {
         return esta(nodoRaiz, elemento);
     }
-
    
     
     /**
@@ -115,6 +130,8 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
         if(esVacio()) throw new ArbolVacioExcepcion("setHijoIzq: Árbol vacio");
         nodoRaiz.setIzq(((EnlazadoArbolBinario<E>)hi).nodoRaiz);
     }
+    
+    
     /**
      * Introduce el Arbol pasado como parámetro en el árbol como hijo derecho
      * del nodo raíz.
@@ -128,6 +145,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
         nodoRaiz.setIzq(((EnlazadoArbolBinario<E>)hd).nodoRaiz);
     }
     
+    
     /**
      * Pone a null el nodo raíz del arbol.
      */
@@ -136,45 +154,20 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
         this.nodoRaiz = null;
     }
 
-    /*
-    private static <E> void EliminarNodosInferiores(ArbolBinario<E> a, int cont, 
-            int nivel) throws ArbolVacioExcepcion {
-        if(!a.esVacio()&&cont<=nivel){
-            EliminarNodosInferiores(a.hijoIzq(), cont+1, nivel);
-            EliminarNodosInferiores(a.hijoDer(), cont+1, nivel);
-            if(cont == nivel){
-                a.setHijoDer(null);
-                a.setHijoIzq(null);
-            }
-        }
-    }
-    
-    @Override
-    public void EliminarNodosInferiores(int nivel) {
-        if(!esVacio()){
-            EliminarNodosInferiores(
-                    ((ArbolBinario<E>)nodoRaiz).hijoIzq(), 1, nivel);
-            EliminarNodosInferiores(
-                    ((ArbolBinario<E>)nodoRaiz).hijoDer(), 1, nivel);
-        }
-    }*/
-    
-    
+      
     /**
-     * Metodo lanzadera de EliminarNodosInferiores que pasa como parametro
+     * Método lanzadera de EliminarNodosInferiores que pasa como parametro
      * el nivel dado por el usuario para eliminar los nodos.
      * @param nivel 
      */
      @Override
-    public void EliminarNodosInferiores(int nivel){
-        
-        EliminarNodosInferiores(this,0,nivel);
-       
+    public void EliminarNodosInferiores(int nivel){       
+        EliminarNodosInferiores(nodoRaiz,0,nivel);      
     }
     
     
     /**
-     * Metodo Eliminar nodos Inferiores. Mediante recursividad elimina las
+     * Método Eliminar nodos Inferiores. Mediante recursividad elimina las
      * referencias a sus hijos de cada nodo que se encuentre en el nivel dado.
      * @param <E>
      * @param a
@@ -182,26 +175,21 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
      * @param nivel
      * @throws ArbolVacioExcepcion 
      */
-    public static <E> void EliminarNodosInferiores(ArbolBinario<E> a, int cont, 
+    public static <E> void EliminarNodosInferiores(NodoBinario<E> raiz, int cont, 
             int nivel)throws ArbolVacioExcepcion {
         
-        if(!a.esVacio() && cont <= nivel){
-            
-            if(cont == nivel){
-                if(!a.hijoIzq().esVacio()) 
-                ((EnlazadoArbolBinario<E>)a).nodoRaiz.setIzq(null);
-                if(!a.hijoDer().esVacio())
-                ((EnlazadoArbolBinario<E>)a).nodoRaiz.setDer(null);                       
+        if(raiz!=null && cont <= nivel){           
+            if(cont == nivel){   
+                raiz.setIzq(null);      
+                raiz.setDer(null);                       
             }              
-            EliminarNodosInferiores(a.hijoIzq(),cont+1,nivel);
-            EliminarNodosInferiores(a.hijoDer(),cont+1,nivel); 
-                   
-        }
-               
+            EliminarNodosInferiores(raiz.getIzq(),cont+1,nivel);
+            EliminarNodosInferiores(raiz.getDer(),cont+1,nivel);                  
+        }              
     }
      
     /**
-     * Pone como raíz del arbol el elemento pasado como parámetro.
+     * Pone como raíz del árbol el elemento pasado como parámetro.
      * @param elemRaiz
      * @throws ArbolVacioExcepcion 
      */
@@ -230,7 +218,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     
     
     /**
-     * Metodo generico preorder que muestra por pantalla el listado de un árbol
+     * Método generico preOrder que muestra por pantalla el listado de un árbol
      * en PreOrden.
      * @param <E>
      * @param a
@@ -247,7 +235,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     
     
     /**
-     * Metodo generico inorden que muestra por pantalla el listado de un árbol
+     * Método generico inOrden que muestra por pantalla el listado de un árbol
      * en InOrden.
      * @param <E>
      * @param a
@@ -263,7 +251,7 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
     }
     
     /**
-     * Metodo generico postorden que muestra por pantalla el listado de un árbol
+     * Método generico postOrden que muestra por pantalla el listado de un árbol
      * en PostOrden.
      * @param <E>
      * @param a
