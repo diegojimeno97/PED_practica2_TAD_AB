@@ -3,8 +3,7 @@ package AB;
 
 public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
     
-    
-    
+  
     /**
      * Constructor de ABEnteros que pasa todos los parametros a su clase padre
      * @param elemRaiz valor del elemento
@@ -201,8 +200,6 @@ public class ABEnteros<E extends Integer> extends EnlazadoArbolBinario{
         }
         return nivel;
     }
-    
-    
-  
+      
     
 }
