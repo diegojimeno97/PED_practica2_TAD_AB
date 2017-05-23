@@ -199,6 +199,16 @@ public class EnlazadoArbolBinario<E> implements ArbolBinario<E> {
         nodoRaiz.setElemento(elemRaiz);
     }
     
+    
+    
+    
+    
+    /**
+     * 
+     * @param <E>
+     * @param a
+     * @throws ArbolVacioExcepcion 
+     */
     public static <E> void anchura(ArbolBinario<E> a) 
             throws ArbolVacioExcepcion {
         LinkedList<ArbolBinario<E>> c = 

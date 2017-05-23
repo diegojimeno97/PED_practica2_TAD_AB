@@ -188,9 +188,6 @@ public class PruebaABEnteros {
         return Integer.parseInt(opcion);
     }
     
-    
-    
-    
      /**
      * Método que muestra por pantalla un mensaje de salia.
      */
