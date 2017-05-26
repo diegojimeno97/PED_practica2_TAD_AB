@@ -85,7 +85,7 @@ public class main {
                 case "8": prueba.mostrarMinimoValorNivel();break;
                 
                 case "0": prueba.salir(); continuar = false;break;
-                
+     
                 default: continuar = true; break;
                                
             }

@@ -156,7 +156,7 @@ public class PruebaABEnteros {
      */
     public void inordenAB2(){
         System.out.println("\nAB2 en InOrden: ");
-        AB2.inorden(this.AB2);
+        ABEnteros.inorden(this.AB2);
         pausa();
     }
     
@@ -206,6 +206,11 @@ public class PruebaABEnteros {
            int read = System.in.read();
         } catch (IOException ex) {}
         System.out.println("\n");
+    }
+    
+    public void imprimirPorNiveles(){
+        
+        ABEnteros.anchura(AB1);
     }
     
 }
