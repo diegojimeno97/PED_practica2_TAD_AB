@@ -54,7 +54,8 @@ public class main {
             String opcion = entrada.nextLine ();
             
             try{
-                if(opcion.isEmpty()||opcion.matches(".*[^0-9].*")) 
+                if(opcion.isEmpty()||opcion.matches(".*[^0-9].*")
+                        ||Integer.parseInt(opcion)>8) 
                 throw new ArbolVacioExcepcion("\t->Seleccionar una opción [0-8].");
 
                 else if(!arbolcreado&&Integer.parseInt(opcion)>1){ 
